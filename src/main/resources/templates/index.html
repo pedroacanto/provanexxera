@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Padaria Gerson</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+
+	<div class="container" style="margin:0 auto;">
+		<div class="jumbotron">
+		  <h2>Olá, seja bem vindo ao sistema de padaria do seu Gerson!</h2>
+		  <hr class="my-4">
+		  <p>Navegue para um dos seguintes lugares:</p>
+		  <p class="lead">
+		    <a class="btn btn-primary btn-lg" href="/filial" role="button">Gerência de Filiais</a>
+		    <a class="btn btn-info btn-lg" href="/conta" role="button">Gerência de Contas</a>
+		  </p>
+		</div>	
+	</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+</body>
+
+</html>

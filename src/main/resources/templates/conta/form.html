@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Padaria Gerson</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+
+	<div class="container">		
+		
+		<div class="jumbotron jumbotron-fluid" style="padding-top: 20px; padding-bottom: 20px;">
+		<h2>Cadastro Conta</h2>
+		<form action="#" id="formulario-cadastro" th:action="@{../conta/}" th:object="${conta}" method="post">
+			<div class="row">
+				<div class="form-group col-md-6">					
+					<label>Filial: </label>			
+		            <select id="filial" class="form-control form-control-lg" name="filialId" required="required">
+		            	<option value="">Selecione a filial</option>	
+		  				<option th:each="filial: ${filiais}" 
+		  						th:value="${filial.id}" 
+		  						th:text="${filial.local}" />	
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label>Valor Conta</label>
+					<input class ="form-control" placeholder="Valor Conta" required="required" name="valor"/>					
+				</div>
+			</div>		
+			<button class="btn btn-primary" type="submit">Cadastro</button>
+			<a class="btn btn-primary" href="/conta/">Voltar</a>
+		</form>					   
+		</div>				    	    
+	</div>
+	  
+
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+</body>
+
+</html>

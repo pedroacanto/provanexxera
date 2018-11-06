@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Padaria Gerson</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+	
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">			    
+			    	<a class="navbar-brand" href="#" style="color: #337AB7">Gerenciar Contas</a>			    				    	
+			    </div>
+				
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+					  <li><a href="/filial">Gerenciar Filiais</a></li>
+					</ul>
+					<div class="navbar-form navbar-right">
+						<a href="/conta/form" class="btn btn-primary">Cadastrar</a>	
+					</div>
+			    </div>
+			</div>
+		</nav>	
+		
+		<div th:with="condition=${sucesso} != null" th:remove="tag" >
+		    <p th:if="${condition}" th:text="${sucesso}" class="alert alert-success" role="alert"></p>		
+		</div>
+		
+		<div th:with="condition=${erro} != null" th:remove="tag">
+		    <p th:if="${condition}" th:text="${erro}" class="alert alert-danger" role="alert" ></p>		
+		</div>
+					    
+	    <div>
+		    <table class="table table-bordered" style="width: 100%">
+				<thead>
+				    <tr>
+				      <th scope="col">Filial</th>
+				      <th scope="col">Valor</th>
+				      <th scope="col">Data Lançamento</th>
+				      <th scope="col">Dar Baixa</th>
+				      <th scope="col">Atualizar - Excluir</th>				      
+				    </tr>
+			  	</thead>
+			  	<tbody th:each="conta: ${contas}">
+			  	<tr>			
+					<td><span th:text="${conta.filial.local}"></span></td>
+					<td><span th:text="${#numbers.formatDecimal(conta.valor, 0, 'POINT', 2, 'COMMA')}"></span></td>
+					<td><span th:text="${#temporals.format(conta.dataLancamento, 'dd/MM/yyyy')}"></span></td>
+					<td th:with="condition=${conta.contaPaga}">
+				    	<a th:if="!${condition}" type="button" class="btn btn-info" th:href="@{conta/baixa/__${conta.id}__}">Baixa</a>				    	
+				    </td>
+				    <td><a class="btn btn-primary" th:href="@{conta/edit/__${conta.id}__}">Atualizar</a> - <a class="btn btn-primary" th:href="@{conta/excluir/__${conta.id}__}">Excluir</a></td>				    
+				</tr>
+				</tbody>
+			</table>    
+	    </div>
+	</div>
+
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+</body>
+
+</html>
