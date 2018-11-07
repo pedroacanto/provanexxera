@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Padaria Gerson</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+
+	<div class="container">		
+		
+		<div class="jumbotron jumbotron-fluid" style="padding-top: 20px; padding-bottom: 20px;">
+		<h2>Cadastro Filial</h2>
+		<form action="#" id="formulario-cadastro" th:action="@{../filial/}" th:object="${filial}" method="post">
+			<div class="row">
+				<div class="form-group col-md-6">					
+					<label for="local">Local Filial</label>
+					<input class ="form-control" placeholder="Local" required="required" name="local"/>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="saldo">Saldo</label>
+					<input class ="saldo form-control" placeholder="Saldo Filial" required="required" name="saldo"/>					
+				</div>
+			</div>		
+			<button class="btn btn-primary" type="submit">Cadastro</button>
+			<a class="btn btn-primary" href="/filial">Voltar</a>
+		</form>					   
+		</div>				    	    
+	</div>
+	  	
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+<script src="/js/jquery.js" th:href="@{/js/jquery.js}"></script>
+
+<script src="/js/jquery.maskMoney.js" type="text/javascript"></script>
+<script>
+	$(".saldo").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
+	
+	$('#formulario-cadastro').submit(function() {
+		var value = $('.saldo').maskMoney('unmasked')[0];
+	    $('.saldo').val(value);	  	
+	});
+</script>
+
+</body>
+
+</html>

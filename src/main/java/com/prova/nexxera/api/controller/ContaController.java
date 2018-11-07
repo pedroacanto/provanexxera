@@ -55,8 +55,7 @@ public class ContaController {
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView salvar(@Valid Conta conta, BindingResult result, RedirectAttributes redirectAttributes) {
 		try {			
-			conta.setContaPaga(false);
-			conta.setDataLancamento(LocalDate.now());
+			conta.setContaPaga(false);			
 			
 			//Thymeleaf não deixou passar direito o objeto filial pelo selected. Verificar possibilidade de ajuste.		
 			Optional<Filial> filial = repositoryFilial.findById(conta.getFilialId());
@@ -80,13 +79,14 @@ public class ContaController {
 			
 			conta.get().setContaPaga(true);
 			conta.get().setSaldoAnterior(filial.get().getSaldo());
+			conta.get().setDataLancamento(LocalDate.now());
 			
 			filial.get().setSaldo(filial.get().getSaldo().subtract(conta.get().getValor()));
 			
 			repositoryConta.save(conta.get());
 			repositoryFilial.save(filial.get());
 					
-			redirectAttributes.addFlashAttribute("sucesso", "Baixa da conta realizada com sucesso!");
+			redirectAttributes.addFlashAttribute("sucesso", "Baixa da conta realizada com sucesso! Verifique o saldo em Gerenciar Filiais!");
 		}catch(Exception ex) {
 			redirectAttributes.addFlashAttribute("erro", "Algo deu errado durante procedimento!");
 		}finally {

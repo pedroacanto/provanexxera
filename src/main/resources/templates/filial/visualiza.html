@@ -27,6 +27,7 @@
 				<thead>
 				    <tr>
 				      <th scope="col">Conta Paga</th>
+				      <th scope="col">Data Pagamento</th>
 				      <th scope="col">Valor Conta</th>				      
 				      <th scope="col">Saldo Anterior</th>
 				      <th scope="col">Saldo Posterior</th>
@@ -39,6 +40,7 @@
 				    	<a th:if="${condition}" type="button" class="btn btn-success disabled">Paga</a>
 				    	<a th:if="!${condition}" type="button" class="btn btn-warning disabled">Não Paga</a>
 				    </td>
+				    <td><span th:text="${#temporals.format(conta.dataLancamento, 'dd/MM/yyyy')}"></span></td>
 					<td><span th:text="${#numbers.formatDecimal(conta.valor, 0, 'POINT', 2, 'COMMA')}"></span></td>					
 				    <td><span th:text="${#numbers.formatDecimal(conta.saldoAnterior, 0, 'POINT', 2, 'COMMA')}"></span></td>
 				    <td th:with="condition=${conta.contaPaga}">
@@ -52,7 +54,7 @@
 
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+<script src="/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
 </body>
 
 </html>

@@ -18,6 +18,9 @@
 					<ul class="nav navbar-nav">
 					  <li><a href="/conta">Gerenciar Contas</a></li>
 					</ul>
+					<div class="navbar-form navbar-right">
+						<a href="/filial/form" class="btn btn-primary">Cadastrar</a>	
+					</div>
 			    </div>
 			</div>
 		</nav>    
@@ -27,7 +30,7 @@
 				    <tr>
 				      <th scope="col">Local</th>
 				      <th scope="col">Saldo</th>
-				      <th scope="col">Visualizar Contas</th>
+				      <th scope="col">Histórico de Contas</th>
 				    </tr>
 			  	</thead>
 			  	<tbody th:each="filial: ${filiais}">
@@ -43,7 +46,7 @@
 
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+<script src="/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
 </body>
 
 </html>
