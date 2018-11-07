@@ -73,8 +73,10 @@ public class ContaController {
 	@SuppressWarnings("finally")
 	@RequestMapping(value="/baixa/{id}", method=RequestMethod.GET)
 	public ModelAndView darBaixaConta(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-		try {			
+		try {
 			Optional<Conta>  conta = repositoryConta.findById(id);
+			
+			
 			Optional<Filial> filial = repositoryFilial.findById(conta.get().getFilial().getId());
 			
 			conta.get().setContaPaga(true);
@@ -103,8 +105,13 @@ public class ContaController {
 	}
 	
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
-	public ModelAndView edit(@PathVariable("id") Long id){
+	public ModelAndView edit(@PathVariable("id") Long id, RedirectAttributes redirectAttributes){
 		Optional<Conta> conta = repositoryConta.findById(id);
+		if(conta.get().isContaPaga()) {
+			redirectAttributes.addFlashAttribute("erro", "Não é possível editar uma conta que já está paga!");
+			return new ModelAndView("redirect:/conta");
+		}
+		
 		List<Filial> filiais = repositoryFilial.findAll();
 		
 		ModelAndView model = new ModelAndView("/conta/edit.html");

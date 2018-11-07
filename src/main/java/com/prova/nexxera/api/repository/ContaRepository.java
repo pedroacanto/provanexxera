@@ -9,7 +9,7 @@ import com.prova.nexxera.api.model.Conta;
 
 public interface ContaRepository extends JpaRepository<Conta, Long>{
 
-	@Query(value="SELECT * FROM conta WHERE filial_id =?1 ORDER BY data_lancamento desc", nativeQuery = true)
+	@Query(value="SELECT * FROM conta WHERE filial_id =?1 ORDER BY data_lancamento ASC", nativeQuery = true)
 	List<Conta> findContaByFilialId(long idFilial);
 	
 }

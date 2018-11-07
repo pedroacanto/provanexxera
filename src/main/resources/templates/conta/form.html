@@ -40,7 +40,7 @@
 
 <script src="/js/jquery.maskMoney.js" type="text/javascript"></script>
 <script>
-	$(".valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
+	$(".valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:','});
 	
 	$('#formulario-cadastro').submit(function() {
 		var value = $('.valor').maskMoney('unmasked')[0];
